@@ -150,6 +150,33 @@ charcount.c.s:
 	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/charcount.c.s
 .PHONY : charcount.c.s
 
+lib/sort.o: lib/sort.c.o
+
+.PHONY : lib/sort.o
+
+# target to build an object file
+lib/sort.c.o:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/lib/sort.c.o
+.PHONY : lib/sort.c.o
+
+lib/sort.i: lib/sort.c.i
+
+.PHONY : lib/sort.i
+
+# target to preprocess a source file
+lib/sort.c.i:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/lib/sort.c.i
+.PHONY : lib/sort.c.i
+
+lib/sort.s: lib/sort.c.s
+
+.PHONY : lib/sort.s
+
+# target to generate assembly for a file
+lib/sort.c.s:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/lib/sort.c.s
+.PHONY : lib/sort.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -189,6 +216,9 @@ help:
 	@echo "... charcount.o"
 	@echo "... charcount.i"
 	@echo "... charcount.s"
+	@echo "... lib/sort.o"
+	@echo "... lib/sort.i"
+	@echo "... lib/sort.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -81,6 +81,9 @@
 		<Unit filename="/home/go/CLionProjects/huff/charcount.c">
 			<Option target="huff"/>
 		</Unit>
+		<Unit filename="/home/go/CLionProjects/huff/lib/sort.c">
+			<Option target="huff"/>
+		</Unit>
 		<Unit filename="/home/go/CLionProjects/huff/main.c">
 			<Option target="huff"/>
 		</Unit>
