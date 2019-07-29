@@ -13,7 +13,16 @@ int main() {
 	}
 	sort(keys,buff,95);
 
+	int realSize = 95;
 	for(int i = 0;i<95;i++){
+		if(buff[i]==0){
+			realSize = i;
+			break;
+		}
+	}
+
+
+	for(int i = 0;i<realSize;i++){
 		printf("%c count: %d\n",keys[i],buff[i]);
 	}
 	return 0;
