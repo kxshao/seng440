@@ -2,18 +2,18 @@
 
 int main() {
 	//the ={} initializes to zero
-	int buff[128] = {};
-	int numCounted = charCount("aaaaabbbbcccdde",buff);
+	int buff[95] = {};
+	//this passes a negative array index with the expectation that the function only access indexes 32-127
+	int numCounted = charCount("aaaaabbbbcccdde",buff-32);
 	printf("Counted: %d\n",numCounted);
 
-	int keys[128];
-	for(int i = 0; i<128; i++){
-		keys[i] = i;
+	int keys[95];
+	for(int i = 0; i<95; i++){
+		keys[i] = i+32;
 	}
+	sort(keys,buff,95);
 
-	sort(keys,buff,128);
-
-	for(int i = 0;i<128;i++){
+	for(int i = 0;i<95;i++){
 		printf("%c count: %d\n",keys[i],buff[i]);
 	}
 	return 0;
