@@ -3,4 +3,4 @@ project(huff C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(huff main.c)
+add_executable(huff main.c charcount.c)

@@ -123,6 +123,33 @@ huff/fast:
 	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/build
 .PHONY : huff/fast
 
+charcount.o: charcount.c.o
+
+.PHONY : charcount.o
+
+# target to build an object file
+charcount.c.o:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/charcount.c.o
+.PHONY : charcount.c.o
+
+charcount.i: charcount.c.i
+
+.PHONY : charcount.i
+
+# target to preprocess a source file
+charcount.c.i:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/charcount.c.i
+.PHONY : charcount.c.i
+
+charcount.s: charcount.c.s
+
+.PHONY : charcount.s
+
+# target to generate assembly for a file
+charcount.c.s:
+	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/charcount.c.s
+.PHONY : charcount.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... huff"
 	@echo "... edit_cache"
+	@echo "... charcount.o"
+	@echo "... charcount.i"
+	@echo "... charcount.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
