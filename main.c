@@ -1,4 +1,110 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "string.h"
+#include "charcount.c"
+#include "lib/sort.c"
+
+typedef struct BinaryTreeNode{
+	struct BinaryTreeNode* l;
+	struct BinaryTreeNode* r;
+	struct BinaryTreeNode* parent;
+	char v;
+	int weight;
+} Node;
+
+Node* join(Node* l, Node* r){
+	Node* parent = malloc(sizeof(Node));
+	parent -> l = l;
+	parent -> r = r;
+	parent -> parent = NULL;
+	parent -> v = 0;
+	if(r==NULL){
+		parent -> weight = l->weight;
+	} else{
+		parent -> weight = l->weight + r->weight;
+	}
+	return parent;
+}
+
+/**
+ * @param start is the first non null value
+ * nodes[start-1] MUST be allocated, and will be overwritten
+ * */
+void insert(Node* new, Node** nodes, int start, int end){
+	//find insertion point
+	int i;
+	for(i = start; i<end; i++){
+		if(new->weight < nodes[i]->weight){
+			break;
+		}
+	}
+	//shift everything over
+	int j;
+	for(j = start; j<i; j++){
+		nodes[j-1] = nodes[j];
+	}
+	//insert
+	nodes[j-1] = new;
+}
+
+void makeTree(Node** tree, const char* letters, const int* counts, int size){
+	Node *leafs[size];
+
+	//init
+	for (int i=0;i<size;i++){
+		leafs[i] = malloc(sizeof(Node));
+		leafs[i]->l = NULL;
+		leafs[i]->r = NULL;
+		leafs[i]->parent = NULL;
+		leafs[i]->v = letters[i];
+		leafs[i]->weight = counts[i];
+	}
+
+	//base case
+	if(size==1){
+		*tree = join(leafs[0],NULL);
+		return;
+	}
+
+	int i = 1;
+	Node *tmp;
+
+	//start at lowest weight and go up
+	while (i<size){
+		tmp = join(leafs[i-1], leafs[i]);
+		//leafs[i-1] becomes ignored garbage
+		leafs[i] = NULL;
+
+		i++;
+
+		//maintain small-to-big sorted order
+		insert(tmp,leafs,i,size);
+	}
+
+	*tree = leafs[size-1];
+}
+
+void printTree(Node* tree, const char* sequence){
+	if(tree==NULL) return;
+	if(*sequence==0){
+		printf("Printing tree:\n");
+	} else{
+		if(tree->v){
+			printf("Leaf %c: %s\n",tree->v,sequence);
+		} else{
+			printf("Intermediate: %s\n",sequence);
+		}
+	}
+	//C lang bullshit to join const strings
+	char newStr[strlen(sequence)+1];
+	strcpy(newStr,sequence);
+	//manually fiddle with the last bits rather than call strcat
+	newStr[strlen(sequence)]='0';
+	newStr[strlen(sequence)+1]=0;
+	printTree(tree->l,newStr);
+	newStr[strlen(sequence)]='1';
+	printTree(tree->r,newStr);
+}
 
 int main() {
 	//the ={} initializes to zero
@@ -27,6 +133,10 @@ int main() {
 		sortedLetters[i] = (char) keys[94-i];
 		weights[i] = buff[94-i];
 	}
+
+	Node* root;
+	makeTree(&root,sortedLetters,weights,realSize);
+	printTree(root,"");
 
 	printf("unique letters: %d\n",realSize);
 
