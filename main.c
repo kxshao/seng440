@@ -79,12 +79,12 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 void printTree(Node* tree, const char* sequence){
 	if(tree==NULL) return;
 	if(*sequence==0){
-		printf("Printing tree:\n");
+		printf("Printing tree: (total weight %d)\n",tree->weight);
 	} else{
 		if(tree->v){
-			printf("Leaf %c: %s\n",tree->v,sequence);
+			printf("Leaf %c: %s (%d)\n",tree->v,sequence,tree->weight);
 		} else{
-			printf("Intermediate: %s\n",sequence);
+			printf("Intermediate: %s (%d)\n",sequence, tree->weight);
 		}
 	}
 	//C lang bullshit to join const strings
