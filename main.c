@@ -36,10 +36,8 @@ void insert(Node* new, Node** nodes, int start, int end){
 		if(new->weight < nodes[i]->weight){
 			break;
 		}
-		printf("SHIFT replaced %c%d with %c%d\n",nodes[i-1]->v,nodes[i-1]->weight,nodes[i]->v,nodes[i]->weight);
 		nodes[i-1]=nodes[i];
 	}
-	printf("NEW replaced %c%d with %d\n",nodes[i-1]->v,nodes[i-1]->weight,new->weight);
 	nodes[i-1] = new;
 }
 
@@ -125,8 +123,8 @@ int main() {
 	char sortedLetters[realSize];
 	int weights[realSize];
 	for(int i = 0;i<realSize;i++){
-		sortedLetters[i] = (char) keys[94-i];
-		weights[i] = buff[94-i];
+		sortedLetters[i] = (char) keys[95-realSize+i];
+		weights[i] = buff[95-realSize+i];
 	}
 
 	Node* root;
