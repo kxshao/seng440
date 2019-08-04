@@ -84,9 +84,9 @@ void printTree(Node* tree, const char* sequence){
 		printf("Printing tree: (total weight %d)\n",tree->weight);
 	} else{
 		if(tree->v){
-			printf("Leaf %c: %s (%d)\n",tree->v,sequence,tree->weight);
+			printf("Leaf,\"%c\",%s,%d\n",tree->v,sequence,tree->weight);
 		} else{
-			printf("Intermediate: %s (%d)\n",sequence, tree->weight);
+			printf("Intermediate,%s,%d\n",sequence, tree->weight);
 		}
 	}
 	//C lang bullshit to join const strings
