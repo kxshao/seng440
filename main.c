@@ -31,20 +31,16 @@ Node* join(Node* l, Node* r){
  * nodes[start-1] MUST be allocated, and will be overwritten
  * */
 void insert(Node* new, Node** nodes, int start, int end){
-	//find insertion point
 	int i;
-	for(i = start; i<end; i++){
+	for(i = start+1; i<end; i++){
 		if(new->weight < nodes[i]->weight){
 			break;
 		}
+		printf("SHIFT replaced %c%d with %c%d\n",nodes[i-1]->v,nodes[i-1]->weight,nodes[i]->v,nodes[i]->weight);
+		nodes[i-1]=nodes[i];
 	}
-	//shift everything over
-	int j;
-	for(j = start; j<i; j++){
-		nodes[j-1] = nodes[j];
-	}
-	//insert
-	nodes[j-1] = new;
+	printf("NEW replaced %c%d with %d\n",nodes[i-1]->v,nodes[i-1]->weight,new->weight);
+	nodes[i-1] = new;
 }
 
 void makeTree(Node** tree, const char* letters, const int* counts, int size){
@@ -73,12 +69,10 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 	while (i<size){
 		tmp = join(leafs[i-1], leafs[i]);
 		//leafs[i-1] becomes ignored garbage
-		leafs[i] = NULL;
-
-		i++;
 
 		//maintain small-to-big sorted order
 		insert(tmp,leafs,i,size);
+		i++;
 	}
 
 	*tree = leafs[size-1];
