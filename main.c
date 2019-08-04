@@ -4,6 +4,8 @@
 #include "charcount.c"
 #include "lib/sort.c"
 
+#define  INPUT_SIZE 100000
+
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
 	struct BinaryTreeNode* r;
@@ -100,11 +102,30 @@ void printTree(Node* tree, const char* sequence){
 }
 
 int main() {
+	FILE* f = fopen("/home/go/textfiles/pg-dracula.txt","r");
+	if(!f){
+		printf("file open failed");
+		return 1;
+	}
+	char input[INPUT_SIZE];
+	int c;
+	char* inputIndex = input;
+	int inputSize = 0;
+	while ((c = fgetc(f))!=EOF){
+		*inputIndex++ = (char)c;
+		//-2 to leave space for the ending null and the fact that index counts from 0
+		if(++inputSize > INPUT_SIZE-2) break;
+	}
+	//add terminator
+	*inputIndex = 0;
+	printf("chars read %d, strlen %lu\n",inputSize, strlen(input));
+	fclose(f);
+
 	//the ={} initializes to zero
 	int buff[95] = {};
 	//this passes a negative array index with the expectation that the function only access indexes 32-127
-	int numCounted = charCount("aaaaabbbbcccdde",buff-32);
-	printf("Counted: %d\n",numCounted);
+	int numCounted = charCount(input,buff-32, inputSize);
+	printf("valid chars counted: %d\n",numCounted);
 
 	int keys[95];
 	for(int i = 0; i<95; i++){
