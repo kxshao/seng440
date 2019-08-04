@@ -96,13 +96,14 @@ void printTree(Node* tree, const char* sequence){
 		}
 	}
 	//C lang bullshit to join const strings
-	char newStr[strlen(sequence)+1];
+	int l = (int) strlen(sequence);
+	char newStr[l+2];//strlen doesnt count the ending 0
 	strcpy(newStr,sequence);
 	//manually fiddle with the last bits rather than call strcat
-	newStr[strlen(sequence)]='0';
-	newStr[strlen(sequence)+1]=0;
+	newStr[l]='0';
+	newStr[l+1]=0;
 	printTree(tree->l,newStr);
-	newStr[strlen(sequence)]='1';
+	newStr[l]='1';
 	printTree(tree->r,newStr);
 }
 
