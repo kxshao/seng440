@@ -5,7 +5,7 @@ void sort(int *keys, int *vals, int length){
 
 	while (i<length){
 		int j = i;
-		while (j>0 && vals[j-1] < vals[j]){
+		while (j>0 && vals[j-1] > vals[j]){
 			//swap
 			tmp = keys[j];
 			keys[j] = keys[j-1];
