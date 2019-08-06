@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/go/CLionProjects/huff/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/go/clion-2019.2/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/go/clion-2019.2/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,44 +111,84 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named huff
+# Target rules for targets named hufe
 
 # Build rule for target.
-huff: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 huff
-.PHONY : huff
+hufe: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hufe
+.PHONY : hufe
 
 # fast build rule for target.
-huff/fast:
-	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/build
-.PHONY : huff/fast
+hufe/fast:
+	$(MAKE) -f CMakeFiles/hufe.dir/build.make CMakeFiles/hufe.dir/build
+.PHONY : hufe/fast
 
-main.o: main.c.o
+#=============================================================================
+# Target rules for targets named hufd
 
-.PHONY : main.o
+# Build rule for target.
+hufd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hufd
+.PHONY : hufd
+
+# fast build rule for target.
+hufd/fast:
+	$(MAKE) -f CMakeFiles/hufd.dir/build.make CMakeFiles/hufd.dir/build
+.PHONY : hufd/fast
+
+huff_dec.o: huff_dec.c.o
+
+.PHONY : huff_dec.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/main.c.o
-.PHONY : main.c.o
+huff_dec.c.o:
+	$(MAKE) -f CMakeFiles/hufd.dir/build.make CMakeFiles/hufd.dir/huff_dec.c.o
+.PHONY : huff_dec.c.o
 
-main.i: main.c.i
+huff_dec.i: huff_dec.c.i
 
-.PHONY : main.i
+.PHONY : huff_dec.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/main.c.i
-.PHONY : main.c.i
+huff_dec.c.i:
+	$(MAKE) -f CMakeFiles/hufd.dir/build.make CMakeFiles/hufd.dir/huff_dec.c.i
+.PHONY : huff_dec.c.i
 
-main.s: main.c.s
+huff_dec.s: huff_dec.c.s
 
-.PHONY : main.s
+.PHONY : huff_dec.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/huff.dir/build.make CMakeFiles/huff.dir/main.c.s
-.PHONY : main.c.s
+huff_dec.c.s:
+	$(MAKE) -f CMakeFiles/hufd.dir/build.make CMakeFiles/hufd.dir/huff_dec.c.s
+.PHONY : huff_dec.c.s
+
+huff_enc.o: huff_enc.c.o
+
+.PHONY : huff_enc.o
+
+# target to build an object file
+huff_enc.c.o:
+	$(MAKE) -f CMakeFiles/hufe.dir/build.make CMakeFiles/hufe.dir/huff_enc.c.o
+.PHONY : huff_enc.c.o
+
+huff_enc.i: huff_enc.c.i
+
+.PHONY : huff_enc.i
+
+# target to preprocess a source file
+huff_enc.c.i:
+	$(MAKE) -f CMakeFiles/hufe.dir/build.make CMakeFiles/hufe.dir/huff_enc.c.i
+.PHONY : huff_enc.c.i
+
+huff_enc.s: huff_enc.c.s
+
+.PHONY : huff_enc.s
+
+# target to generate assembly for a file
+huff_enc.c.s:
+	$(MAKE) -f CMakeFiles/hufe.dir/build.make CMakeFiles/hufe.dir/huff_enc.c.s
+.PHONY : huff_enc.c.s
 
 # Help Target
 help:
@@ -156,12 +196,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... huff"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... hufe"
+	@echo "... rebuild_cache"
+	@echo "... hufd"
+	@echo "... huff_dec.o"
+	@echo "... huff_dec.i"
+	@echo "... huff_dec.s"
+	@echo "... huff_enc.o"
+	@echo "... huff_enc.i"
+	@echo "... huff_enc.s"
 .PHONY : help
 
 

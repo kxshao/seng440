@@ -185,9 +185,9 @@ int main() {
 	}
 	for(int i = 32;i<127;i++){
 		if(lookupTable[i]){
-			printf("\"%c\",%s\n",i,lookupTable[i]);
+			printf("%c,%s\n",i,lookupTable[i]);
 		}else{
-			printf("%d,\n",i);
+			if(VERBOSE) printf("%d,\n",i);
 		}
 	}
 

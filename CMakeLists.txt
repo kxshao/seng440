@@ -3,4 +3,5 @@ project(huff C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(huff main.c)
+add_executable(hufe huff_enc.c)
+add_executable(hufd huff_dec.c)
