@@ -1,4 +1,4 @@
-# Install script for directory: /home/go/CLionProjects/huff
+# Install script for directory: /home/k/CLionProjects/seng440
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/go/CLionProjects/huff/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/k/CLionProjects/seng440/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -5,44 +5,6 @@
 #define  INPUT_SIZE 5000000
 #define VERBOSE 0
 
-int charCount(char* input, int* buffer, int size){
-	char c = *input;
-	int length = 0;
-	while (c != 0 && size){
-		if(c>31 && c < 127){
-			buffer[c]++;
-			length++;
-		}
-		input++;
-		c = *input;
-		size--;
-	}
-	return length;
-}
-
-//insertion sort for k-v pairs
-void sort(int *keys, int *vals, int length){
-	int i = 1;
-	int tmp;
-
-	while (i<length){
-		int j = i;
-		while (j>0 && vals[j-1] > vals[j]){
-			//swap
-			tmp = keys[j];
-			keys[j] = keys[j-1];
-			keys[j-1] = tmp;
-			tmp = vals[j];
-			vals[j] = vals[j-1];
-			vals[j-1] = tmp;
-
-			//j moves backward
-			j--;
-		}
-		i++;
-	}
-}
-
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
 	struct BinaryTreeNode* r;
@@ -166,25 +128,10 @@ int main() {
 	}
 	int c;
 
-	//build the table from input
-	int charsetSize = fgetc(f);
-	//discard 1 newline after size
-	fgetc(f);
-	char keys[charsetSize];
-	int weights[charsetSize];
-
-	for(int i = 0; i<charsetSize; i++){
-		keys[i] = (char) fgetc(f);
-		char v[20];
-		int size = 0;
-		while ((c = fgetc(f))!='\n'){
-			v[size] = (char) c;
-			size++;
-		}
-		//terminate
-		v[size] = 0;
-		weights[i] = atoi(v);
-	}
+	//precomputed frequencies
+	int charsetSize = 26;
+    char keys[26] = {'Z','J','Q','X','V','K','B','P','G','Y','C','F','M','W','U','L','D','R','I','S','H','N','O','A','T','E'};
+    int weights[26] = {280,492,545,813,5635,6305,8838,9183,12647,12806,13646,14213,17246,17415,18492,26101,28679,36136,38381,39632,42403,44551,51607,52583,58279,81286};
 
 	//parse encoded input
 	char input[INPUT_SIZE];
@@ -199,6 +146,7 @@ int main() {
 	makeTree(&root,keys,weights,charsetSize);
 
 	Node* curr = root;
+
 	for(int i = 0; i<inputSize;i++){
 		char v = input[i];
 		if(v=='0'){
