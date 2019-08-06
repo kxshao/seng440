@@ -4,7 +4,7 @@
 #include "charcount.c"
 #include "lib/sort.c"
 
-#define  INPUT_SIZE 100
+#define  INPUT_SIZE 1000
 #define VERBOSE 0
 
 typedef struct BinaryTreeNode{
@@ -183,6 +183,8 @@ int main() {
 			printf("%c count: %d\n",sortedLetters[i],weights[i]);
 		}
 	}
+	//print num of lines in lookup table
+	printf("%c\n",realSize);
 	for(int i = 32;i<127;i++){
 		if(lookupTable[i]){
 			printf("%c,%s\n",i,lookupTable[i]);
@@ -196,7 +198,10 @@ int main() {
 	inputIndex = input;
 	char v;
 	while ((v = *inputIndex++)){
-		printf("%s",lookupTable[v]);
+		//this check discards unprintable characters
+		if(v>31 && v<127){
+			printf("%s",lookupTable[v]);
+		}
 	}
 
 	return 0;
