@@ -1,0 +1,16 @@
+digraph {
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	"(below main)" [color="#ff0100", fontcolor="#ffffff", fontsize="10.00", label="libc-2.27.so\n(below main)\n99.89%\n(0.00%)\n1×"];
+	"(below main)" -> main [arrowsize="1.00", color="#ff0100", fontcolor="#ff0100", fontsize="10.00", label="99.89%\n1×", labeldistance="4.00", penwidth="4.00"];
+	"0x0000000000001090" [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="ld-2.27.so\n0x0000000000001090\n100.00%\n(0.00%)\n0×"];
+	"0x0000000000001090" -> "_start" [arrowsize="1.00", color="#ff0100", fontcolor="#ff0100", fontsize="10.00", label="99.89%\n1×", labeldistance="4.00", penwidth="4.00"];
+	"_start" [color="#ff0100", fontcolor="#ffffff", fontsize="10.00", label="hufd\n_start\n99.89%\n(0.00%)\n1×"];
+	"_start" -> "(below main)" [arrowsize="1.00", color="#ff0100", fontcolor="#ff0100", fontsize="10.00", label="99.89%\n1×", labeldistance="4.00", penwidth="4.00"];
+	getc [color="#0c9590", fontcolor="#ffffff", fontsize="10.00", label="libc-2.27.so\ngetc\n25.89%\n(25.82%)\n3793773×"];
+	main [color="#ff0100", fontcolor="#ffffff", fontsize="10.00", label="hufd\nmain\n99.89%\n(68.14%)\n1×"];
+	main -> getc [arrowsize="0.51", color="#0c9590", fontcolor="#0c9590", fontsize="10.00", label="25.89%\n3793773×", labeldistance="1.04", penwidth="1.04"];
+	main -> putc [arrowsize="0.35", color="#0d267a", fontcolor="#0d267a", fontsize="10.00", label="5.81%\n851176×", labeldistance="0.50", penwidth="0.50"];
+	putc [color="#0d267a", fontcolor="#ffffff", fontsize="10.00", label="libc-2.27.so\nputc\n5.81%\n(5.79%)\n851176×"];
+}

@@ -65,19 +65,15 @@ Node* join(Node* l, Node* r){
 	return parent;
 }
 
-/**
- * @param start is the first non null value
- * nodes[start-1] MUST be allocated, and will be overwritten
- * */
-void insert(Node* new, Node** nodes, int start, int end){
+void insert(Node* newNode, Node** nodes, int start, int end){
 	int i;
 	for(i = start+1; i<end; i++){
-		if(new->weight < nodes[i]->weight){
+		if(newNode->weight < nodes[i]->weight){
 			break;
 		}
 		nodes[i-1]=nodes[i];
 	}
-	nodes[i-1] = new;
+	nodes[i-1] = newNode;
 }
 
 void makeTree(Node** tree, const char* letters, const int* counts, int size){
@@ -161,7 +157,8 @@ void makeLookupTable(Node* tree, const char* sequence, char** table){
 }
 
 int main() {
-	FILE* f = fopen("../text/in.txt","r");
+//	FILE* f = fopen("../text/in.txt","r");
+	FILE* f = stdin;
 	if(!f){
 		printf("file open failed\n");
 		return 1;
