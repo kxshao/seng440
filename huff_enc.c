@@ -184,13 +184,20 @@ int main() {
 		}
 	}
 	//print num of lines in lookup table
-	printf("%c\n",realSize);
-	for(int i = 32;i<127;i++){
-		if(lookupTable[i]){
-			printf("%c,%s\n",i,lookupTable[i]);
-		}else{
-			if(VERBOSE) printf("%d,\n",i);
+	if(VERBOSE){
+		printf("%c\n",realSize);
+		for(int i = 32;i<127;i++){
+			if(lookupTable[i]){
+				printf("%c,%s\n",i,lookupTable[i]);
+			}else{
+				if(VERBOSE) printf("%d,\n",i);
+			}
 		}
+	}
+
+	printf("%c\n",realSize);
+	for(int i = 0;i<realSize;i++){
+		printf("%c%d\n",sortedLetters[i],weights[i]);
 	}
 
 	if(VERBOSE) printf("__encoded text__\n");
