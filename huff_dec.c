@@ -1,11 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
-#include "charcount.c"
-#include "lib/sort.c"
 
 #define  INPUT_SIZE 10000
 #define VERBOSE 0
+
+int charCount(char* input, int* buffer, int size){
+	char c = *input;
+	int length = 0;
+	while (c != 0 && size){
+		if(c>31 && c < 127){
+			buffer[c]++;
+			length++;
+		}
+		input++;
+		c = *input;
+		size--;
+	}
+	return length;
+}
+
+//insertion sort for k-v pairs
+void sort(int *keys, int *vals, int length){
+	int i = 1;
+	int tmp;
+
+	while (i<length){
+		int j = i;
+		while (j>0 && vals[j-1] > vals[j]){
+			//swap
+			tmp = keys[j];
+			keys[j] = keys[j-1];
+			keys[j-1] = tmp;
+			tmp = vals[j];
+			vals[j] = vals[j-1];
+			vals[j-1] = tmp;
+
+			//j moves backward
+			j--;
+		}
+		i++;
+	}
+}
 
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
