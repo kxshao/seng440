@@ -8,6 +8,7 @@
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
 	struct BinaryTreeNode* r;
+	struct BinaryTreeNode* parent;
 	char v;
 	int weight;
 } Node;
@@ -16,6 +17,7 @@ Node* join(Node* l, Node* r){
 	Node* parent = malloc(sizeof(Node));
 	parent -> l = l;
 	parent -> r = r;
+	parent -> parent = NULL;
 	parent -> v = 0;
 	if(r==NULL){
 		parent -> weight = l->weight;
@@ -44,6 +46,7 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 		leafs[i] = malloc(sizeof(Node));
 		leafs[i]->l = NULL;
 		leafs[i]->r = NULL;
+		leafs[i]->parent = NULL;
 		leafs[i]->v = letters[i];
 		leafs[i]->weight = counts[i];
 	}
@@ -145,7 +148,7 @@ int main() {
 	char* lookupTable[128] = {};
 	makeLookupTable(root,"",lookupTable);
 
-	if(1) printTree(root,"");
+	if(VERBOSE) printTree(root,"");
 	if(VERBOSE) printf("unique letters: %d\n",realSize);
 	//print num of lines in lookup table
 	if(VERBOSE){

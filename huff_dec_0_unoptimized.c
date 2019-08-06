@@ -2,12 +2,51 @@
 #include <stdlib.h>
 #include "string.h"
 
-#define  INPUT_SIZE 1000000
+#define  INPUT_SIZE 5000000
 #define VERBOSE 0
+
+int charCount(char* input, int* buffer, int size){
+	char c = *input;
+	int length = 0;
+	while (c != 0 && size){
+		if(c>31 && c < 127){
+			buffer[c]++;
+			length++;
+		}
+		input++;
+		c = *input;
+		size--;
+	}
+	return length;
+}
+
+//insertion sort for k-v pairs
+void sort(int *keys, int *vals, int length){
+	int i = 1;
+	int tmp;
+
+	while (i<length){
+		int j = i;
+		while (j>0 && vals[j-1] > vals[j]){
+			//swap
+			tmp = keys[j];
+			keys[j] = keys[j-1];
+			keys[j-1] = tmp;
+			tmp = vals[j];
+			vals[j] = vals[j-1];
+			vals[j-1] = tmp;
+
+			//j moves backward
+			j--;
+		}
+		i++;
+	}
+}
 
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
 	struct BinaryTreeNode* r;
+	struct BinaryTreeNode* parent;
 	char v;
 	int weight;
 } Node;
@@ -16,6 +55,7 @@ Node* join(Node* l, Node* r){
 	Node* parent = malloc(sizeof(Node));
 	parent -> l = l;
 	parent -> r = r;
+	parent -> parent = NULL;
 	parent -> v = 0;
 	if(r==NULL){
 		parent -> weight = l->weight;
@@ -44,6 +84,7 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 		leafs[i] = malloc(sizeof(Node));
 		leafs[i]->l = NULL;
 		leafs[i]->r = NULL;
+		leafs[i]->parent = NULL;
 		leafs[i]->v = letters[i];
 		leafs[i]->weight = counts[i];
 	}
@@ -115,58 +156,63 @@ void makeLookupTable(Node* tree, const char* sequence, char** table){
 	makeLookupTable(tree->r,newStr,table);
 }
 
+
 int main() {
-//	FILE* f = fopen("../text/in.txt","r");
+//	FILE* f = fopen("../text/enc.txt","r");
 	FILE* f = stdin;
 	if(!f){
 		printf("file open failed\n");
 		return 1;
 	}
-	char input[INPUT_SIZE];
 	int c;
+
+	//build the table from input
+	int charsetSize = fgetc(f);
+	//discard 1 newline after size
+	fgetc(f);
+	char keys[charsetSize];
+	int weights[charsetSize];
+
+	for(int i = 0; i<charsetSize; i++){
+		keys[i] = (char) fgetc(f);
+		char v[20];
+		int size = 0;
+		while ((c = fgetc(f))!='\n'){
+			v[size] = (char) c;
+			size++;
+		}
+		//terminate
+		v[size] = 0;
+		weights[i] = atoi(v);
+	}
+
+	//parse encoded input
+	char input[INPUT_SIZE];
 	char* inputIndex = input;
 	int inputSize = 0;
 	while ((c = fgetc(f))!=EOF){
 		*inputIndex++ = (char)c;
-		//-2 to leave space for the ending null and the fact that index counts from 0
 		if(++inputSize > INPUT_SIZE-2) break;
 	}
-	//add terminator
-	*inputIndex = 0;
-	if(VERBOSE) printf("chars read %d, strlen %lu\n",inputSize, strlen(input));
-	fclose(f);
-
-	int realSize = 26;
-    char keys[26] = {'Z','J','Q','X','V','K','B','P','G','Y','C','F','M','W','U','L','D','R','I','S','H','N','O','A','T','E'};
-    int weights[26] = {280,492,545,813,5635,6305,8838,9183,12647,12806,13646,14213,17246,17415,18492,26101,28679,36136,38381,39632,42403,44551,51607,52583,58279,81286};
 
 	Node* root;
-	makeTree(&root,keys,weights,realSize);
-	char* lookupTable[128] = {};
-	makeLookupTable(root,"",lookupTable);
+	makeTree(&root,keys,weights,charsetSize);
 
-	if(1) printTree(root,"");
-	if(VERBOSE) printf("unique letters: %d\n",realSize);
-	//print num of lines in lookup table
-	if(VERBOSE){
-		printf("%c\n",realSize);
-		for(int i = 65;i<91;i++){
-			if(lookupTable[i]){
-				printf("%c,%s\n",i,lookupTable[i]);
-			}else{
-				if(VERBOSE) printf("%d,\n",i);
+	Node* curr = root;
+	for(int i = 0; i<inputSize;i++){
+		char v = input[i];
+		if(v=='0'){
+			curr = curr->l;
+			if(curr->v != 0){
+				putc(curr->v,stdout);
+				curr = root;
 			}
-		}
-	}
-
-	if(VERBOSE) printf("__encoded text__\n");
-
-	inputIndex = input;
-	char v;
-	while ((v = *inputIndex++)){
-		//this check discards unprintable characters
-		if(v>31 && v<127){
-			printf("%s",lookupTable[v]);
+		} else{
+			curr = curr->r;
+			if(curr->v != 0){
+				putc(curr->v,stdout);
+				curr = root;
+			}
 		}
 	}
 

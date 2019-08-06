@@ -5,9 +5,48 @@
 #define  INPUT_SIZE 1000000
 #define VERBOSE 0
 
+int charCount(char* input, int* buffer, int size){
+	char c = *input;
+	int length = 0;
+	while (c != 0 && size){
+		if(c>31 && c < 127){
+			buffer[c]++;
+			length++;
+		}
+		input++;
+		c = *input;
+		size--;
+	}
+	return length;
+}
+
+//insertion sort for k-v pairs
+void sort(int *keys, int *vals, int length){
+	int i = 1;
+	int tmp;
+
+	while (i<length){
+		int j = i;
+		while (j>0 && vals[j-1] > vals[j]){
+			//swap
+			tmp = keys[j];
+			keys[j] = keys[j-1];
+			keys[j-1] = tmp;
+			tmp = vals[j];
+			vals[j] = vals[j-1];
+			vals[j-1] = tmp;
+
+			//j moves backward
+			j--;
+		}
+		i++;
+	}
+}
+
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
 	struct BinaryTreeNode* r;
+	struct BinaryTreeNode* parent;
 	char v;
 	int weight;
 } Node;
@@ -16,6 +55,7 @@ Node* join(Node* l, Node* r){
 	Node* parent = malloc(sizeof(Node));
 	parent -> l = l;
 	parent -> r = r;
+	parent -> parent = NULL;
 	parent -> v = 0;
 	if(r==NULL){
 		parent -> weight = l->weight;
@@ -44,6 +84,7 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 		leafs[i] = malloc(sizeof(Node));
 		leafs[i]->l = NULL;
 		leafs[i]->r = NULL;
+		leafs[i]->parent = NULL;
 		leafs[i]->v = letters[i];
 		leafs[i]->weight = counts[i];
 	}
@@ -136,27 +177,60 @@ int main() {
 	if(VERBOSE) printf("chars read %d, strlen %lu\n",inputSize, strlen(input));
 	fclose(f);
 
-	int realSize = 26;
-    char keys[26] = {'Z','J','Q','X','V','K','B','P','G','Y','C','F','M','W','U','L','D','R','I','S','H','N','O','A','T','E'};
-    int weights[26] = {280,492,545,813,5635,6305,8838,9183,12647,12806,13646,14213,17246,17415,18492,26101,28679,36136,38381,39632,42403,44551,51607,52583,58279,81286};
+	//the ={} initializes to zero
+	int buff[95] = {};
+	//this passes a negative array index with the expectation that the function only access indexes 32-127
+	int numCounted = charCount(input,buff-32, inputSize);
+	if(VERBOSE) printf("valid chars counted: %d\n",numCounted);
+
+	int keys[95];
+	for(int i = 0; i<95; i++){
+		keys[i] = i+32;
+	}
+	sort(keys,buff,95);
+
+	int realSize;
+	for(realSize = 0;realSize<95;realSize++){
+		if(buff[94-realSize]==0){
+			break;
+		}
+	}
+	//todo possibly remove an unnecessary array and initializer loop
+	//im dumb why did i originally define the array as int instead of char
+	char sortedLetters[realSize];
+	int weights[realSize];
+	for(int i = 0;i<realSize;i++){
+		sortedLetters[i] = (char) keys[95-realSize+i];
+		weights[i] = buff[95-realSize+i];
+	}
 
 	Node* root;
-	makeTree(&root,keys,weights,realSize);
+	makeTree(&root,sortedLetters,weights,realSize);
 	char* lookupTable[128] = {};
 	makeLookupTable(root,"",lookupTable);
 
-	if(1) printTree(root,"");
+	if(VERBOSE) printTree(root,"");
 	if(VERBOSE) printf("unique letters: %d\n",realSize);
+	if(VERBOSE){
+		for(int i = 0;i<realSize;i++){
+			printf("%c count: %d\n",sortedLetters[i],weights[i]);
+		}
+	}
 	//print num of lines in lookup table
 	if(VERBOSE){
 		printf("%c\n",realSize);
-		for(int i = 65;i<91;i++){
+		for(int i = 32;i<127;i++){
 			if(lookupTable[i]){
 				printf("%c,%s\n",i,lookupTable[i]);
 			}else{
 				if(VERBOSE) printf("%d,\n",i);
 			}
 		}
+	}
+
+	printf("%c\n",realSize);
+	for(int i = 0;i<realSize;i++){
+		printf("%c%d\n",sortedLetters[i],weights[i]);
 	}
 
 	if(VERBOSE) printf("__encoded text__\n");
