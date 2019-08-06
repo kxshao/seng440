@@ -5,121 +5,6 @@
 #define  INPUT_SIZE 5000000
 #define VERBOSE 0
 
-typedef struct BinaryTreeNode{
-	struct BinaryTreeNode* l;
-	struct BinaryTreeNode* r;
-	struct BinaryTreeNode* parent;
-	char v;
-	int weight;
-} Node;
-
-
-Node* join(Node* l, Node* r){
-	Node* parent = malloc(sizeof(Node));
-	parent -> l = l;
-	parent -> r = r;
-	parent -> parent = NULL;
-	parent -> v = 0;
-	if(r==NULL){
-		parent -> weight = l->weight;
-	} else{
-		parent -> weight = l->weight + r->weight;
-	}
-	return parent;
-}
-
-void insert(Node* newNode, Node** nodes, int start, int end){
-	int i;
-	for(i = start+1; i<end; i++){
-		if(newNode->weight < nodes[i]->weight){
-			break;
-		}
-		nodes[i-1]=nodes[i];
-	}
-	nodes[i-1] = newNode;
-}
-
-void makeTree(Node** tree, const char* letters, const int* counts, int size){
-	Node *leafs[size];
-
-	//init
-	for (int i=0;i<size;i++){
-		leafs[i] = malloc(sizeof(Node));
-		leafs[i]->l = NULL;
-		leafs[i]->r = NULL;
-		leafs[i]->parent = NULL;
-		leafs[i]->v = letters[i];
-		leafs[i]->weight = counts[i];
-	}
-
-	//base case
-	if(size==1){
-		*tree = join(leafs[0],NULL);
-		return;
-	}
-
-	int i = 1;
-	Node *tmp;
-
-	//start at lowest weight and go up
-	while (i<size){
-		tmp = join(leafs[i-1], leafs[i]);
-		//leafs[i-1] becomes ignored garbage
-
-		//maintain small-to-big sorted order
-		insert(tmp,leafs,i,size);
-		i++;
-	}
-
-	*tree = leafs[size-1];
-}
-
-void printTree(Node* tree, const char* sequence){
-	if(tree==NULL) return;
-	if(*sequence==0){
-		printf("Printing tree: (total weight %d)\n",tree->weight);
-	} else{
-		if(tree->v){
-			printf("Leaf,\'%c\',%s,%d\n",tree->v,sequence,tree->weight);
-		} else{
-			printf("Intermediate,%s,%d\n",sequence, tree->weight);
-		}
-	}
-	//C lang bullshit to join const strings
-	int l = (int) strlen(sequence);
-	char newStr[l+2];//strlen doesnt count the ending 0
-	strcpy(newStr,sequence);
-	//manually fiddle with the last bits rather than call strcat
-	newStr[l]='0';
-	newStr[l+1]=0;
-	printTree(tree->l,newStr);
-	newStr[l]='1';
-	printTree(tree->r,newStr);
-}
-
-void makeLookupTable(Node* tree, const char* sequence, char** table){
-	if(tree==NULL) return;
-	if(*sequence){
-		if(tree->v){
-			//leaf
-			table[tree->v] = malloc(sizeof(char)*(strlen(sequence)+1));
-			strcpy(table[tree->v],sequence);
-		} else{
-		}
-	}
-	//C lang bullshit to join const strings
-	int l = (int) strlen(sequence);
-	char newStr[l+2];//strlen doesnt count the ending 0
-	strcpy(newStr,sequence);
-	//manually fiddle with the last bits rather than call strcat
-	newStr[l]='0';
-	newStr[l+1]=0;
-	makeLookupTable(tree->l,newStr,table);
-	newStr[l]='1';
-	makeLookupTable(tree->r,newStr,table);
-}
-
-
 int main() {
 //	FILE* f = fopen("../text/enc.txt","r");
 	FILE* f = stdin;
@@ -129,122 +14,144 @@ int main() {
 	}
 	int c;
 
-	//precomputed frequencies
-	int charsetSize = 26;
-    char keys[26] = {'Z','J','Q','X','V','K','B','P','G','Y','C','F','M','W','U','L','D','R','I','S','H','N','O','A','T','E'};
-    int weights[26] = {280,492,545,813,5635,6305,8838,9183,12647,12806,13646,14213,17246,17415,18492,26101,28679,36136,38381,39632,42403,44551,51607,52583,58279,81286};
-
 	//parse encoded input
 	char input[INPUT_SIZE];
 	char* inputIndex = input;
 	int inputSize = 0;
 	while ((c = fgetc(f))!=EOF){
-		*inputIndex++ = (char)c;
+	    //subtract 48 to change '0' to 0
+		*inputIndex++ = (char)c-48;
 		if(++inputSize > INPUT_SIZE-2) break;
 	}
 
-	//levels 1 and 2 have no leafs
-    char cache3[] = {
-            'T',//000
-            0,//001
-            0,//010
-            0,//011
-            'E',//100
-            0,//101
-            0,//110
-            0,//111
+	struct CacheObj{
+	    char c;
+	    int actualBits;
+	};
+	//this can be addressed as a 6 bit number (char or int)
+    struct CacheObj cache6[] ={
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'T',3,//000xxx
+            'D',4,//0010xx
+            'D',4,//0010xx
+            'D',4,//0010xx
+            'D',4,//0010xx
+            'F',5,//00110x
+            'F',5,//00110x
+            'M',5,//00111x
+            'M',5,//00111x
+            'W',5,//01000x
+            'W',5,//01000x
+            'B',6,//010010
+            'P',6,//010011
+            'R',4,//0101xx
+            'R',4,//0101xx
+            'R',4,//0101xx
+            'R',4,//0101xx
+            'I',4,//0110xx
+            'I',4,//0110xx
+            'I',4,//0110xx
+            'I',4,//0110xx
+            'S',4,//0111xx
+            'S',4,//0111xx
+            'S',4,//0111xx
+            'S',4,//0111xx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'E',3,//100xxx
+            'H',4,//1010xx
+            'H',4,//1010xx
+            'H',4,//1010xx
+            'H',4,//1010xx
+            'U',5,//10110x
+            'U',5,//10110x
+            'G',6,//101110
+            'Y',6,//101111
+            'N',4,//1100xx
+            'N',4,//1100xx
+            'N',4,//1100xx
+            'N',4,//1100xx
+            'O',4,//1101xx
+            'O',4,//1101xx
+            'O',4,//1101xx
+            'O',4,//1101xx
+            'A',4,//1110xx
+            'A',4,//1110xx
+            'A',4,//1110xx
+            'A',4,//1110xx
+            'L',5,//11110x
+            'L',5,//11110x
+            0,5//11111x
     };
 
-    char cache4[] ={
-            0,//000x=T
-            0,//000x=T
-            'D',//0010
-            0,//0011
-            0,//0100
-            'R',//0101
-            'I',//0110
-            'S',//0111
-            0,//100x=E
-            0,//100x=E
-            'H',//1010
-            0,//1011
-            'N',//1100
-            'O',//1101
-            'A',//1110
-            0,//1111
-    };
-    char cache5[] ={
-            0,//000x=T
-            0,//000x=T
-            0,//000x=T
-            0,//000x=T
-            0,//0010x=D
-            0,//0010x=D
-            'F',//00110
-            'M',//00111
-            'W',//01000
-            0,//01001
-            0,//0101x=R
-            0,//0101x=R
-            0,//0110x=I
-            0,//0110x=I
-            0,//0111x=S
-            0,//0111x=S
-            0,//100x=E
-            0,//100x=E
-            0,//100x=E
-            0,//100x=E
-            0,//1010x=H
-            0,//1010x=H
-            'U',//10110
-            0,//10111
-            0,//1100x=N
-            0,//1100x=N
-            0,//1101x=O
-            0,//1101x=O
-            0,//1110x=A
-            0,//1110x=A
-            'L',//11110
-            0,//11111
-    };
-    struct  Node2{
-        char v;
-        char * sequence;
-    } ;
-    struct Node2 rareList[] = {
-            {'B',"010010"},
-            {'P',"010011"},
-            {'G',"101110"},
-            {'Y',"101111"},
-            {'C',"111110"},
-            {'K',"1111110"},
-            {'V',"11111111"},
-            {'X',"111111100"},
-            {'Q',"1111111010"},
-            {'Z',"11111110110"},
-            {'J',"11111110111"},
-    };
+	int i = 0;
 
-    Node* root;
-	makeTree(&root,keys,weights,charsetSize);
+    while(i<inputSize-11){
+		//note - only stores 6 bits out of 8
+        unsigned char buffer;
+		//first bit
+		buffer = input[i];
+		if(buffer>1)return 1;
+		//shift for bits 2-6
+		buffer <<= 1;
+		buffer |= input[i+1];
+        buffer <<= 1;
+        buffer |= input[i+2];
+        buffer <<= 1;
+        buffer |= input[i+3];
+        buffer <<= 1;
+        buffer |= input[i+4];
+        buffer <<= 1;
+        buffer |= input[i+5];
+        if(cache6[buffer].c){
+            //cache hit
+            putc(cache6[buffer].c,stdout);
+            i+=cache6[buffer].actualBits;
+        } else{
+            //rare letter found, up to 6 additional bits
+            //all in the list below begin with 11111
+            // {'C',"0"},
+            // {'K',"10"},
+            // {'V',"111"},
+            // {'X',"1100"},
+            // {'Q',"11010"},
+            // {'Z',"110110"},
+            // {'J',"110111"},
 
-	Node* curr = root;
-
-	for(int i = 0; i<inputSize;i++){
-		char v = input[i];
-		if(v=='0'){
-			curr = curr->l;
-			if(curr->v != 0){
-				putc(curr->v,stdout);
-				curr = root;
-			}
-		} else{
-			curr = curr->r;
-			if(curr->v != 0){
-				putc(curr->v,stdout);
-				curr = root;
-			}
-		}
+            if(!input[i+5]){
+                putc('C',stdout);
+                i+=6;
+            } else if(!input[i+6]){
+                putc('K',stdout);
+                i+=7;
+            } else if( input[i+7]){
+                putc('V',stdout);
+                i+=8;
+            } else if(!input[i+8]){
+                putc('X',stdout);
+                i+=9;
+            } else if(!input[i+9]){
+                putc('Q',stdout);
+                i+=10;
+            } else if( input[i+10]){
+                putc('J',stdout);
+                i+=11;
+            } else{
+                putc('Z',stdout);
+                i+=11;
+            }
+        }
 	}
 
 	return 0;
