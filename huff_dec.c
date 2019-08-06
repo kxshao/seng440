@@ -126,7 +126,7 @@ void makeLookupTable(Node* tree, const char* sequence, char** table){
 
 
 int main() {
-	FILE* f = fopen("/home/go/textfiles/testfile.txt","r");
+	FILE* f = fopen("../text/enc.txt","r");
 //	FILE* f = stdin;
 	if(!f){
 		printf("file open failed\n");

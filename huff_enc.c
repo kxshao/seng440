@@ -4,7 +4,7 @@
 #include "charcount.c"
 #include "lib/sort.c"
 
-#define  INPUT_SIZE 1000
+#define  INPUT_SIZE 1000000
 #define VERBOSE 0
 
 typedef struct BinaryTreeNode{
@@ -125,7 +125,7 @@ void makeLookupTable(Node* tree, const char* sequence, char** table){
 }
 
 int main() {
-	FILE* f = fopen("/home/go/textfiles/pg-dracula.txt","r");
+	FILE* f = fopen("../text/in.txt","r");
 	if(!f){
 		printf("file open failed\n");
 		return 1;
