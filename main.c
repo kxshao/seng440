@@ -4,7 +4,8 @@
 #include "charcount.c"
 #include "lib/sort.c"
 
-#define  INPUT_SIZE 100000
+#define  INPUT_SIZE 100
+#define VERBOSE 0
 
 typedef struct BinaryTreeNode{
 	struct BinaryTreeNode* l;
@@ -101,10 +102,32 @@ void printTree(Node* tree, const char* sequence){
 	printTree(tree->r,newStr);
 }
 
+void makeLookupTable(Node* tree, const char* sequence, char** table){
+	if(tree==NULL) return;
+	if(*sequence){
+		if(tree->v){
+			//leaf
+			table[tree->v] = malloc(sizeof(char)*(strlen(sequence)+1));
+			strcpy(table[tree->v],sequence);
+		} else{
+		}
+	}
+	//C lang bullshit to join const strings
+	int l = (int) strlen(sequence);
+	char newStr[l+2];//strlen doesnt count the ending 0
+	strcpy(newStr,sequence);
+	//manually fiddle with the last bits rather than call strcat
+	newStr[l]='0';
+	newStr[l+1]=0;
+	makeLookupTable(tree->l,newStr,table);
+	newStr[l]='1';
+	makeLookupTable(tree->r,newStr,table);
+}
+
 int main() {
 	FILE* f = fopen("/home/go/textfiles/pg-dracula.txt","r");
 	if(!f){
-		printf("file open failed");
+		printf("file open failed\n");
 		return 1;
 	}
 	char input[INPUT_SIZE];
@@ -118,14 +141,14 @@ int main() {
 	}
 	//add terminator
 	*inputIndex = 0;
-	printf("chars read %d, strlen %lu\n",inputSize, strlen(input));
+	if(VERBOSE) printf("chars read %d, strlen %lu\n",inputSize, strlen(input));
 	fclose(f);
 
 	//the ={} initializes to zero
 	int buff[95] = {};
 	//this passes a negative array index with the expectation that the function only access indexes 32-127
 	int numCounted = charCount(input,buff-32, inputSize);
-	printf("valid chars counted: %d\n",numCounted);
+	if(VERBOSE) printf("valid chars counted: %d\n",numCounted);
 
 	int keys[95];
 	for(int i = 0; i<95; i++){
@@ -150,12 +173,31 @@ int main() {
 
 	Node* root;
 	makeTree(&root,sortedLetters,weights,realSize);
-	printTree(root,"");
+	char* lookupTable[128] = {};
+	makeLookupTable(root,"",lookupTable);
 
-	printf("unique letters: %d\n",realSize);
-
-	for(int i = 0;i<realSize;i++){
-		printf("%c count: %d\n",sortedLetters[i],weights[i]);
+	if(VERBOSE) printTree(root,"");
+	if(VERBOSE) printf("unique letters: %d\n",realSize);
+	if(VERBOSE){
+		for(int i = 0;i<realSize;i++){
+			printf("%c count: %d\n",sortedLetters[i],weights[i]);
+		}
 	}
+	for(int i = 32;i<127;i++){
+		if(lookupTable[i]){
+			printf("\"%c\",%s\n",i,lookupTable[i]);
+		}else{
+			printf("%d,\n",i);
+		}
+	}
+
+	if(VERBOSE) printf("__encoded text__\n");
+
+	inputIndex = input;
+	char v;
+	while ((v = *inputIndex++)){
+		printf("%s",lookupTable[v]);
+	}
+
 	return 0;
 }
