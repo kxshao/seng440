@@ -166,7 +166,23 @@ int main() {
 	Node* root;
 	makeTree(&root,keys,weights,charsetSize);
 
-	printTree(root,"");
+	Node* curr = root;
+	for(int i = 0; i<inputSize;i++){
+		char v = input[i];
+		if(v=='0'){
+			curr = curr->l;
+			if(curr->v != 0){
+				putc(curr->v,stdout);
+				curr = root;
+			}
+		} else{
+			curr = curr->r;
+			if(curr->v != 0){
+				putc(curr->v,stdout);
+				curr = root;
+			}
+		}
+	}
 
 	return 0;
 }
