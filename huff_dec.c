@@ -13,6 +13,7 @@ typedef struct BinaryTreeNode{
 	int weight;
 } Node;
 
+
 Node* join(Node* l, Node* r){
 	Node* parent = malloc(sizeof(Node));
 	parent -> l = l;
@@ -79,7 +80,7 @@ void printTree(Node* tree, const char* sequence){
 		printf("Printing tree: (total weight %d)\n",tree->weight);
 	} else{
 		if(tree->v){
-			printf("Leaf,\"%c\",%s,%d\n",tree->v,sequence,tree->weight);
+			printf("Leaf,\'%c\',%s,%d\n",tree->v,sequence,tree->weight);
 		} else{
 			printf("Intermediate,%s,%d\n",sequence, tree->weight);
 		}
@@ -142,7 +143,89 @@ int main() {
 		if(++inputSize > INPUT_SIZE-2) break;
 	}
 
-	Node* root;
+	//levels 1 and 2 have no leafs
+    char cache3[] = {
+            'T',//000
+            0,//001
+            0,//010
+            0,//011
+            'E',//100
+            0,//101
+            0,//110
+            0,//111
+    };
+
+    char cache4[] ={
+            0,//000x=T
+            0,//000x=T
+            'D',//0010
+            0,//0011
+            0,//0100
+            'R',//0101
+            'I',//0110
+            'S',//0111
+            0,//100x=E
+            0,//100x=E
+            'H',//1010
+            0,//1011
+            'N',//1100
+            'O',//1101
+            'A',//1110
+            0,//1111
+    };
+    char cache5[] ={
+            0,//000x=T
+            0,//000x=T
+            0,//000x=T
+            0,//000x=T
+            0,//0010x=D
+            0,//0010x=D
+            'F',//00110
+            'M',//00111
+            'W',//01000
+            0,//01001
+            0,//0101x=R
+            0,//0101x=R
+            0,//0110x=I
+            0,//0110x=I
+            0,//0111x=S
+            0,//0111x=S
+            0,//100x=E
+            0,//100x=E
+            0,//100x=E
+            0,//100x=E
+            0,//1010x=H
+            0,//1010x=H
+            'U',//10110
+            0,//10111
+            0,//1100x=N
+            0,//1100x=N
+            0,//1101x=O
+            0,//1101x=O
+            0,//1110x=A
+            0,//1110x=A
+            'L',//11110
+            0,//11111
+    };
+    struct  Node2{
+        char v;
+        char * sequence;
+    } ;
+    struct Node2 rareList[] = {
+            {'B',"010010"},
+            {'P',"010011"},
+            {'G',"101110"},
+            {'Y',"101111"},
+            {'C',"111110"},
+            {'K',"1111110"},
+            {'V',"11111111"},
+            {'X',"111111100"},
+            {'Q',"1111111010"},
+            {'Z',"11111110110"},
+            {'J',"11111110111"},
+    };
+
+    Node* root;
 	makeTree(&root,keys,weights,charsetSize);
 
 	Node* curr = root;
