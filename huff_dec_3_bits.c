@@ -100,7 +100,6 @@ int main() {
     unsigned char lookup;
     unsigned int startBit = 0;
 
-    int x = 0;
     while(inputIndex < endIndex-1){
         byte1 = *inputIndex;
         byte2 = *(inputIndex+1);
