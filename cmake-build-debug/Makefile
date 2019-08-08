@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named hufd3
+
+# Build rule for target.
+hufd3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hufd3
+.PHONY : hufd3
+
+# fast build rule for target.
+hufd3/fast:
+	$(MAKE) -f CMakeFiles/hufd3.dir/build.make CMakeFiles/hufd3.dir/build
+.PHONY : hufd3/fast
+
+#=============================================================================
 # Target rules for targets named hufe2
 
 # Build rule for target.
@@ -161,6 +174,19 @@ hufe0: cmake_check_build_system
 hufe0/fast:
 	$(MAKE) -f CMakeFiles/hufe0.dir/build.make CMakeFiles/hufe0.dir/build
 .PHONY : hufe0/fast
+
+#=============================================================================
+# Target rules for targets named t2b
+
+# Build rule for target.
+t2b: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 t2b
+.PHONY : t2b
+
+# fast build rule for target.
+t2b/fast:
+	$(MAKE) -f CMakeFiles/t2b.dir/build.make CMakeFiles/t2b.dir/build
+.PHONY : t2b/fast
 
 #=============================================================================
 # Target rules for targets named hufd0
@@ -322,6 +348,33 @@ huff_dec_2_cache.c.s:
 	$(MAKE) -f CMakeFiles/hufd2.dir/build.make CMakeFiles/hufd2.dir/huff_dec_2_cache.c.s
 .PHONY : huff_dec_2_cache.c.s
 
+huff_dec_3_bits.o: huff_dec_3_bits.c.o
+
+.PHONY : huff_dec_3_bits.o
+
+# target to build an object file
+huff_dec_3_bits.c.o:
+	$(MAKE) -f CMakeFiles/hufd3.dir/build.make CMakeFiles/hufd3.dir/huff_dec_3_bits.c.o
+.PHONY : huff_dec_3_bits.c.o
+
+huff_dec_3_bits.i: huff_dec_3_bits.c.i
+
+.PHONY : huff_dec_3_bits.i
+
+# target to preprocess a source file
+huff_dec_3_bits.c.i:
+	$(MAKE) -f CMakeFiles/hufd3.dir/build.make CMakeFiles/hufd3.dir/huff_dec_3_bits.c.i
+.PHONY : huff_dec_3_bits.c.i
+
+huff_dec_3_bits.s: huff_dec_3_bits.c.s
+
+.PHONY : huff_dec_3_bits.s
+
+# target to generate assembly for a file
+huff_dec_3_bits.c.s:
+	$(MAKE) -f CMakeFiles/hufd3.dir/build.make CMakeFiles/hufd3.dir/huff_dec_3_bits.c.s
+.PHONY : huff_dec_3_bits.c.s
+
 huff_enc.o: huff_enc.c.o
 
 .PHONY : huff_enc.o
@@ -430,6 +483,33 @@ huff_enc_2_cache.c.s:
 	$(MAKE) -f CMakeFiles/hufe2.dir/build.make CMakeFiles/hufe2.dir/huff_enc_2_cache.c.s
 .PHONY : huff_enc_2_cache.c.s
 
+textToBits.o: textToBits.c.o
+
+.PHONY : textToBits.o
+
+# target to build an object file
+textToBits.c.o:
+	$(MAKE) -f CMakeFiles/t2b.dir/build.make CMakeFiles/t2b.dir/textToBits.c.o
+.PHONY : textToBits.c.o
+
+textToBits.i: textToBits.c.i
+
+.PHONY : textToBits.i
+
+# target to preprocess a source file
+textToBits.c.i:
+	$(MAKE) -f CMakeFiles/t2b.dir/build.make CMakeFiles/t2b.dir/textToBits.c.i
+.PHONY : textToBits.c.i
+
+textToBits.s: textToBits.c.s
+
+.PHONY : textToBits.s
+
+# target to generate assembly for a file
+textToBits.c.s:
+	$(MAKE) -f CMakeFiles/t2b.dir/build.make CMakeFiles/t2b.dir/textToBits.c.s
+.PHONY : textToBits.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -437,11 +517,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... hufd3"
 	@echo "... hufe2"
 	@echo "... edit_cache"
 	@echo "... hufe"
 	@echo "... hufd2"
 	@echo "... hufe0"
+	@echo "... t2b"
 	@echo "... hufd0"
 	@echo "... hufd"
 	@echo "... hufe1"
@@ -458,6 +540,9 @@ help:
 	@echo "... huff_dec_2_cache.o"
 	@echo "... huff_dec_2_cache.i"
 	@echo "... huff_dec_2_cache.s"
+	@echo "... huff_dec_3_bits.o"
+	@echo "... huff_dec_3_bits.i"
+	@echo "... huff_dec_3_bits.s"
 	@echo "... huff_enc.o"
 	@echo "... huff_enc.i"
 	@echo "... huff_enc.s"
@@ -470,6 +555,9 @@ help:
 	@echo "... huff_enc_2_cache.o"
 	@echo "... huff_enc_2_cache.i"
 	@echo "... huff_enc_2_cache.s"
+	@echo "... textToBits.o"
+	@echo "... textToBits.i"
+	@echo "... textToBits.s"
 .PHONY : help
 
 
