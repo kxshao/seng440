@@ -80,7 +80,8 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 	Node *leafs[size];
 
 	//init
-	for (int i=0;i<size;i++){
+    int i;
+    for (i = 0; i < size; i++){
 		leafs[i] = malloc(sizeof(Node));
 		leafs[i]->l = NULL;
 		leafs[i]->r = NULL;
@@ -95,7 +96,7 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 		return;
 	}
 
-	int i = 1;
+	i = 1;
 	Node *tmp;
 
 	//start at lowest weight and go up
@@ -184,7 +185,8 @@ int main() {
 	if(VERBOSE) printf("valid chars counted: %d\n",numCounted);
 
 	int keys[95];
-	for(int i = 0; i<95; i++){
+    int i;
+    for(i = 0; i < 95; i++){
 		keys[i] = i+32;
 	}
 	sort(keys,buff,95);
@@ -199,7 +201,7 @@ int main() {
 	//im dumb why did i originally define the array as int instead of char
 	char sortedLetters[realSize];
 	int weights[realSize];
-	for(int i = 0;i<realSize;i++){
+	for(i = 0;i<realSize;i++){
 		sortedLetters[i] = (char) keys[95-realSize+i];
 		weights[i] = buff[95-realSize+i];
 	}
@@ -212,14 +214,14 @@ int main() {
 	if(VERBOSE) printTree(root,"");
 	if(VERBOSE) printf("unique letters: %d\n",realSize);
 	if(VERBOSE){
-		for(int i = 0;i<realSize;i++){
+		for(i = 0;i<realSize;i++){
 			printf("%c count: %d\n",sortedLetters[i],weights[i]);
 		}
 	}
 	//print num of lines in lookup table
 	if(VERBOSE){
 		printf("%c\n",realSize);
-		for(int i = 32;i<127;i++){
+		for(i = 32;i<127;i++){
 			if(lookupTable[i]){
 				printf("%c,%s\n",i,lookupTable[i]);
 			}else{
@@ -229,7 +231,7 @@ int main() {
 	}
 
 	printf("%c\n",realSize);
-	for(int i = 0;i<realSize;i++){
+	for(i = 0;i<realSize;i++){
 		printf("%c%d\n",sortedLetters[i],weights[i]);
 	}
 

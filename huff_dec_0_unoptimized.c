@@ -80,7 +80,8 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 	Node *leafs[size];
 
 	//init
-	for (int i=0;i<size;i++){
+    int i;
+    for (i = 0; i < size; i++){
 		leafs[i] = malloc(sizeof(Node));
 		leafs[i]->l = NULL;
 		leafs[i]->r = NULL;
@@ -95,7 +96,7 @@ void makeTree(Node** tree, const char* letters, const int* counts, int size){
 		return;
 	}
 
-	int i = 1;
+	i = 1;
 	Node *tmp;
 
 	//start at lowest weight and go up
@@ -173,7 +174,8 @@ int main() {
 	char keys[charsetSize];
 	int weights[charsetSize];
 
-	for(int i = 0; i<charsetSize; i++){
+    int i;
+    for(i = 0; i < charsetSize; i++){
 		keys[i] = (char) fgetc(f);
 		char v[20];
 		int size = 0;
@@ -199,7 +201,7 @@ int main() {
 	makeTree(&root,keys,weights,charsetSize);
 
 	Node* curr = root;
-	for(int i = 0; i<inputSize;i++){
+    for(i = 0; i < inputSize; i++){
 		char v = input[i];
 		if(v=='0'){
 			curr = curr->l;

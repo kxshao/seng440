@@ -1,6 +1,4 @@
 .LC28:
-        .ascii  "file open failed\000"
-.LC29:
         .ascii  "%s\000"
 .LC0:
         .ascii  "1110\000"
@@ -97,8 +95,6 @@ main:
         ldr     r3, [fp, #-12]
         cmp     r3, #0
         bne     .L2
-        ldr     r0, .L11+8
-        bl      puts
         mov     r3, #1
         b       .L8
 .L2:
@@ -119,14 +115,14 @@ main:
         add     r3, r2, r3
         ldr     r3, [r3, #-116]
         mov     r1, r3
-        ldr     r0, .L11+12
+        ldr     r0, .L11+8
         bl      printf
 .L5:
         ldr     r3, [fp, #-8]
         add     r3, r3, #1
         str     r3, [fp, #-8]
         ldr     r3, [fp, #-8]
-        ldr     r2, .L11+16
+        ldr     r2, .L11+12
         cmp     r3, r2
         bgt     .L10
 .L4:
@@ -152,5 +148,4 @@ main:
         .word   .LC27
         .word   stdin
         .word   .LC28
-        .word   .LC29
         .word   999998

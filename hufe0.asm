@@ -251,16 +251,16 @@ insert:
 makeTree:
         stmfd   sp!, {r4, r5, r6, r7, r8, fp, lr}
         add     fp, sp, #24
-        sub     sp, sp, #44
-        str     r0, [fp, #-56]
-        str     r1, [fp, #-60]
-        str     r2, [fp, #-64]
-        str     r3, [fp, #-68]
+        sub     sp, sp, #36
+        str     r0, [fp, #-48]
+        str     r1, [fp, #-52]
+        str     r2, [fp, #-56]
+        str     r3, [fp, #-60]
         mov     r3, sp
         mov     r8, r3
-        ldr     r1, [fp, #-68]
+        ldr     r1, [fp, #-60]
         sub     r3, r1, #1
-        str     r3, [fp, #-40]
+        str     r3, [fp, #-36]
         mov     r3, r1
         mov     r2, r3
         mov     r3, #0
@@ -284,7 +284,7 @@ makeTree:
         add     r3, r3, #3
         mov     r3, r3, lsr #2
         mov     r3, r3, asl #2
-        str     r3, [fp, #-44]
+        str     r3, [fp, #-40]
         mov     r3, #0
         str     r3, [fp, #-32]
         b       .L24
@@ -293,38 +293,38 @@ makeTree:
         bl      malloc
         mov     r3, r0
         mov     r1, r3
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         str     r1, [r3, r2, asl #2]
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         mov     r2, #0
         str     r2, [r3]
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         mov     r2, #0
         str     r2, [r3, #4]
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         mov     r2, #0
         str     r2, [r3, #8]
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         ldr     r2, [fp, #-32]
-        ldr     r1, [fp, #-60]
+        ldr     r1, [fp, #-52]
         add     r2, r1, r2
         ldrb    r2, [r2]        @ zero_extendqisi2
         strb    r2, [r3, #12]
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         ldr     r2, [fp, #-32]
         mov     r2, r2, asl #2
-        ldr     r1, [fp, #-64]
+        ldr     r1, [fp, #-56]
         add     r2, r1, r2
         ldr     r2, [r2]
         str     r2, [r3, #16]
@@ -333,55 +333,55 @@ makeTree:
         str     r3, [fp, #-32]
 .L24:
         ldr     r2, [fp, #-32]
-        ldr     r3, [fp, #-68]
+        ldr     r3, [fp, #-60]
         cmp     r2, r3
         blt     .L25
-        ldr     r3, [fp, #-68]
+        ldr     r3, [fp, #-60]
         cmp     r3, #1
         bne     .L26
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r3, [r3]
         mov     r1, #0
         mov     r0, r3
         bl      join
         mov     r2, r0
-        ldr     r3, [fp, #-56]
+        ldr     r3, [fp, #-48]
         str     r2, [r3]
         mov     r3, #0
         b       .L27
 .L26:
         mov     r3, #1
-        str     r3, [fp, #-36]
+        str     r3, [fp, #-32]
         b       .L28
 .L29:
-        ldr     r3, [fp, #-36]
+        ldr     r3, [fp, #-32]
         sub     r2, r3, #1
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r0, [r3, r2, asl #2]
-        ldr     r3, [fp, #-44]
-        ldr     r2, [fp, #-36]
+        ldr     r3, [fp, #-40]
+        ldr     r2, [fp, #-32]
         ldr     r3, [r3, r2, asl #2]
         mov     r1, r3
         bl      join
-        str     r0, [fp, #-48]
-        ldr     r1, [fp, #-44]
-        ldr     r3, [fp, #-68]
-        ldr     r2, [fp, #-36]
-        ldr     r0, [fp, #-48]
+        str     r0, [fp, #-44]
+        ldr     r1, [fp, #-40]
+        ldr     r3, [fp, #-60]
+        ldr     r2, [fp, #-32]
+        ldr     r0, [fp, #-44]
         bl      insert
-        ldr     r3, [fp, #-36]
+        ldr     r3, [fp, #-32]
         add     r3, r3, #1
-        str     r3, [fp, #-36]
+        str     r3, [fp, #-32]
 .L28:
-        ldr     r2, [fp, #-36]
-        ldr     r3, [fp, #-68]
+        ldr     r2, [fp, #-32]
+        ldr     r3, [fp, #-60]
         cmp     r2, r3
         blt     .L29
-        ldr     r3, [fp, #-68]
+        ldr     r3, [fp, #-60]
         sub     r2, r3, #1
-        ldr     r3, [fp, #-44]
+        ldr     r3, [fp, #-40]
         ldr     r2, [r3, r2, asl #2]
-        ldr     r3, [fp, #-56]
+        ldr     r3, [fp, #-48]
         str     r2, [r3]
         mov     r3, #1
 .L27:
@@ -638,12 +638,12 @@ main:
         stmfd   sp!, {r4, r5, r6, r7, r8, r9, r10, fp, lr}
         add     fp, sp, #32
         sub     sp, sp, #999424
-        sub     sp, sp, #1920
-        sub     sp, sp, #4
+        sub     sp, sp, #1904
+        sub     sp, sp, #12
         ldr     r3, .L69
         ldr     r3, [r3]
-        str     r3, [fp, #-64]
-        ldr     r3, [fp, #-64]
+        str     r3, [fp, #-56]
+        ldr     r3, [fp, #-56]
         cmp     r3, #0
         bne     .L49
         ldr     r0, .L69+4
@@ -653,7 +653,7 @@ main:
 .L49:
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #632
+        sub     r3, r3, #624
         str     r3, [fp, #-40]
         mov     r3, #0
         str     r3, [fp, #-44]
@@ -662,7 +662,7 @@ main:
         ldr     r3, [fp, #-40]
         add     r2, r3, #1
         str     r2, [fp, #-40]
-        ldr     r2, [fp, #-68]
+        ldr     r2, [fp, #-60]
         and     r2, r2, #255
         strb    r2, [r3]
         ldr     r3, [fp, #-44]
@@ -673,10 +673,10 @@ main:
         cmp     r3, r2
         bgt     .L67
 .L51:
-        ldr     r0, [fp, #-64]
+        ldr     r0, [fp, #-56]
         bl      fgetc
-        str     r0, [fp, #-68]
-        ldr     r3, [fp, #-68]
+        str     r0, [fp, #-60]
+        ldr     r3, [fp, #-60]
         cmn     r3, #1
         bne     .L53
         b       .L52
@@ -686,26 +686,26 @@ main:
         ldr     r3, [fp, #-40]
         mov     r2, #0
         strb    r2, [r3]
-        ldr     r0, [fp, #-64]
+        ldr     r0, [fp, #-56]
         bl      fclose
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #1012
+        sub     r3, r3, #1004
         mov     r2, #380
         mov     r1, #0
         mov     r0, r3
         bl      memset
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #1012
+        sub     r3, r3, #1004
         sub     r3, r3, #128
         sub     r0, fp, #999424
         sub     r0, r0, #36
-        sub     r0, r0, #632
+        sub     r0, r0, #624
         ldr     r2, [fp, #-44]
         mov     r1, r3
         bl      charCount
-        str     r0, [fp, #-72]
+        str     r0, [fp, #-64]
         mov     r3, #0
         str     r3, [fp, #-48]
         b       .L54
@@ -718,7 +718,7 @@ main:
         ldr     r3, [fp, #-48]
         mov     r3, r3, asl #2
         add     r3, r1, r3
-        str     r2, [r3, #-1392]
+        str     r2, [r3, #-1384]
         ldr     r3, [fp, #-48]
         add     r3, r3, #1
         str     r3, [fp, #-48]
@@ -726,14 +726,14 @@ main:
         ldr     r3, [fp, #-48]
         cmp     r3, #94
         ble     .L55
-        sub     r1, fp, #999424
-        sub     r1, r1, #36
-        sub     r1, r1, #1012
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #1392
+        sub     r3, r3, #1004
+        ldr     r0, .L69+12
+        sub     r2, fp, #36
+        add     r0, r2, r0
         mov     r2, #95
-        mov     r0, r3
+        mov     r1, r3
         bl      sort
         mov     r3, #0
         str     r3, [fp, #-52]
@@ -745,7 +745,7 @@ main:
         sub     r2, r2, #36
         mov     r3, r3, asl #2
         add     r3, r2, r3
-        ldr     r3, [r3, #-1012]
+        ldr     r3, [r3, #-1004]
         cmp     r3, #0
         beq     .L68
         ldr     r3, [fp, #-52]
@@ -763,23 +763,23 @@ main:
         mov     r3, sp
         mov     r10, r3
         sub     r3, r1, #1
-        str     r3, [fp, #-76]
+        str     r3, [fp, #-68]
         mov     r3, r1
         mov     r2, r3
         mov     r3, #0
         mov     r0, r3, asl #3
-        sub     ip, fp, #999424
-        sub     ip, ip, #1952
+        ldr     ip, .L69+16
+        add     ip, fp, ip
         str     r0, [ip]
-        sub     r0, fp, #999424
-        sub     r0, r0, #1952
+        ldr     r0, .L69+16
+        add     r0, fp, r0
         ldr     r0, [r0]
         orr     r0, r0, r2, lsr #29
-        sub     ip, fp, #999424
-        sub     ip, ip, #1952
+        ldr     ip, .L69+16
+        add     ip, fp, ip
         str     r0, [ip]
         mov     r3, r2, asl #3
-        ldr     r2, .L69+12
+        ldr     r2, .L69+20
         add     r2, fp, r2
         str     r3, [r2]
         mov     r3, r1
@@ -795,10 +795,10 @@ main:
         sub     sp, sp, r3
         mov     r3, sp
         add     r3, r3, #0
-        str     r3, [fp, #-80]
+        str     r3, [fp, #-72]
         ldr     r1, [fp, #-52]
         sub     r3, r1, #1
-        str     r3, [fp, #-84]
+        str     r3, [fp, #-76]
         mov     r3, r1
         mov     r2, r3
         mov     r3, #0
@@ -822,124 +822,124 @@ main:
         add     r3, r3, #3
         mov     r3, r3, lsr #2
         mov     r3, r3, asl #2
-        str     r3, [fp, #-88]
+        str     r3, [fp, #-80]
         mov     r3, #0
-        str     r3, [fp, #-56]
+        str     r3, [fp, #-48]
         b       .L60
 .L61:
         ldr     r3, [fp, #-52]
         rsb     r2, r3, #95
-        ldr     r3, [fp, #-56]
+        ldr     r3, [fp, #-48]
         add     r3, r2, r3
         sub     r2, fp, #999424
         sub     r2, r2, #36
         mov     r3, r3, asl #2
         add     r3, r2, r3
-        ldr     r3, [r3, #-1392]
+        ldr     r3, [r3, #-1384]
         and     r1, r3, #255
-        ldr     r2, [fp, #-80]
-        ldr     r3, [fp, #-56]
+        ldr     r2, [fp, #-72]
+        ldr     r3, [fp, #-48]
         add     r3, r2, r3
         mov     r2, r1
         strb    r2, [r3]
         ldr     r3, [fp, #-52]
         rsb     r2, r3, #95
-        ldr     r3, [fp, #-56]
+        ldr     r3, [fp, #-48]
         add     r3, r2, r3
         sub     r2, fp, #999424
         sub     r2, r2, #36
         mov     r3, r3, asl #2
         add     r3, r2, r3
-        ldr     r1, [r3, #-1012]
-        ldr     r3, [fp, #-88]
-        ldr     r2, [fp, #-56]
+        ldr     r1, [r3, #-1004]
+        ldr     r3, [fp, #-80]
+        ldr     r2, [fp, #-48]
         str     r1, [r3, r2, asl #2]
-        ldr     r3, [fp, #-56]
+        ldr     r3, [fp, #-48]
         add     r3, r3, #1
-        str     r3, [fp, #-56]
+        str     r3, [fp, #-48]
 .L60:
-        ldr     r2, [fp, #-56]
+        ldr     r2, [fp, #-48]
         ldr     r3, [fp, #-52]
         cmp     r2, r3
         blt     .L61
-        ldr     r1, [fp, #-80]
-        ldr     r2, [fp, #-88]
-        ldr     r0, .L69+16
+        ldr     r1, [fp, #-72]
+        ldr     r2, [fp, #-80]
+        ldr     r0, .L69+24
         sub     r3, fp, #36
         add     r0, r3, r0
         ldr     r3, [fp, #-52]
         bl      makeTree
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #1904
-        sub     r3, r3, #4
+        sub     r3, r3, #1888
+        sub     r3, r3, #12
         mov     r2, #512
         mov     r1, #0
         mov     r0, r3
         bl      memset
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        ldr     r0, [r3, #-1396]
-        ldr     r3, .L69+20
+        ldr     r0, [r3, #-1388]
+        ldr     r3, .L69+28
         sub     r2, fp, #36
         add     r3, r2, r3
         mov     r2, r3
-        ldr     r1, .L69+24
+        ldr     r1, .L69+32
         bl      makeLookupTable
         ldr     r1, [fp, #-52]
-        ldr     r0, .L69+28
+        ldr     r0, .L69+36
         bl      printf
         mov     r3, #0
-        str     r3, [fp, #-60]
+        str     r3, [fp, #-48]
         b       .L62
 .L63:
-        ldr     r2, [fp, #-80]
-        ldr     r3, [fp, #-60]
+        ldr     r2, [fp, #-72]
+        ldr     r3, [fp, #-48]
         add     r3, r2, r3
         ldrb    r3, [r3]        @ zero_extendqisi2
         mov     r1, r3
-        ldr     r3, [fp, #-88]
-        ldr     r2, [fp, #-60]
+        ldr     r3, [fp, #-80]
+        ldr     r2, [fp, #-48]
         ldr     r3, [r3, r2, asl #2]
         mov     r2, r3
-        ldr     r0, .L69+32
+        ldr     r0, .L69+40
         bl      printf
-        ldr     r3, [fp, #-60]
+        ldr     r3, [fp, #-48]
         add     r3, r3, #1
-        str     r3, [fp, #-60]
+        str     r3, [fp, #-48]
 .L62:
-        ldr     r2, [fp, #-60]
+        ldr     r2, [fp, #-48]
         ldr     r3, [fp, #-52]
         cmp     r2, r3
         blt     .L63
         sub     r3, fp, #999424
         sub     r3, r3, #36
-        sub     r3, r3, #632
+        sub     r3, r3, #624
         str     r3, [fp, #-40]
         b       .L64
 .L65:
-        ldrb    r3, [fp, #-89]  @ zero_extendqisi2
+        ldrb    r3, [fp, #-81]  @ zero_extendqisi2
         cmp     r3, #31
         bls     .L64
-        ldrb    r3, [fp, #-89]  @ zero_extendqisi2
+        ldrb    r3, [fp, #-81]  @ zero_extendqisi2
         cmp     r3, #126
         bhi     .L64
-        ldrb    r3, [fp, #-89]  @ zero_extendqisi2
+        ldrb    r3, [fp, #-81]  @ zero_extendqisi2
         sub     r2, fp, #999424
         sub     r2, r2, #36
         mov     r3, r3, asl #2
         add     r3, r2, r3
-        ldr     r3, [r3, #-1908]
+        ldr     r3, [r3, #-1900]
         mov     r1, r3
-        ldr     r0, .L69+36
+        ldr     r0, .L69+44
         bl      printf
 .L64:
         ldr     r3, [fp, #-40]
         add     r2, r3, #1
         str     r2, [fp, #-40]
         ldrb    r3, [r3]
-        strb    r3, [fp, #-89]
-        ldrb    r3, [fp, #-89]  @ zero_extendqisi2
+        strb    r3, [fp, #-81]
+        ldrb    r3, [fp, #-81]  @ zero_extendqisi2
         cmp     r3, #0
         bne     .L65
         mov     r3, #0
@@ -953,9 +953,11 @@ main:
         .word   stdin
         .word   .LC3
         .word   999998
-        .word   -1001380
-        .word   -1000820
-        .word   -1001332
+        .word   -1000808
+        .word   -1001368
+        .word   -1001372
+        .word   -1000812
+        .word   -1001324
         .word   .LC4
         .word   .LC5
         .word   .LC6
