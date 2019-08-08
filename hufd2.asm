@@ -131,16 +131,16 @@ main:
         sub     sp, sp, #4980736
         sub     sp, sp, #19200
         sub     sp, sp, #88
-        ldr     r3, .L20
+        ldr     r3, .L19
         ldr     r3, [r3]
         str     r3, [fp, #-20]
         ldr     r3, [fp, #-20]
         cmp     r3, #0
         bne     .L2
         mov     r3, #1
-        b       .L18
+        b       .L17
 .L2:
-        ldr     r3, .L20+4
+        ldr     r3, .L19+4
         sub     r2, fp, #4
         add     r3, r2, r3
         str     r3, [fp, #-8]
@@ -170,20 +170,20 @@ main:
         add     r3, r3, #1
         str     r3, [fp, #-12]
         ldr     r3, [fp, #-12]
-        ldr     r2, .L20+8
+        ldr     r2, .L19+8
         cmp     r3, r2
         movgt   r3, #1
         movle   r3, #0
         and     r3, r3, #255
         cmp     r3, #0
-        bne     .L19
+        bne     .L18
         b       .L6
-.L19:
+.L18:
         mov     r0, r0    @ nop
 .L4:
         mov     r3, #0
         str     r3, [fp, #-16]
-.L17:
+.L16:
         ldr     r3, [fp, #-12]
         sub     r2, r3, #11
         ldr     r3, [fp, #-16]
@@ -199,12 +199,6 @@ main:
         sub     r3, r3, #8
         ldrb    r3, [r3]
         strb    r3, [fp, #-25]
-        ldrb    r3, [fp, #-25]  @ zero_extendqisi2
-        cmp     r3, #1
-        bls     .L8
-        mov     r3, #1
-        b       .L18
-.L8:
         ldrb    r3, [fp, #-25]
         mov     r3, r3, asl #1
         strb    r3, [fp, #-25]
@@ -271,29 +265,29 @@ main:
         orr     r3, r2, r3
         strb    r3, [fp, #-25]
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
-        ldr     r2, .L20+12
+        ldr     r2, .L19+12
         ldrb    r3, [r2, r3, asl #3]    @ zero_extendqisi2
         cmp     r3, #0
-        beq     .L9
+        beq     .L8
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
-        ldr     r2, .L20+12
+        ldr     r2, .L19+12
         ldrb    r3, [r2, r3, asl #3]    @ zero_extendqisi2
         mov     r2, r3
-        ldr     r3, .L20+16
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, r2
         bl      _IO_putc
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
-        ldr     r2, .L20+12
+        ldr     r2, .L19+12
         mov     r3, r3, asl #3
         add     r3, r2, r3
         ldr     r3, [r3, #4]
         ldr     r2, [fp, #-16]
         add     r3, r2, r3
         str     r3, [fp, #-16]
-        b       .L17
-.L9:
+        b       .L16
+.L8:
         ldr     r3, [fp, #-16]
         add     r2, r3, #5
         sub     r3, fp, #4980736
@@ -302,8 +296,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        bne     .L11
-        ldr     r3, .L20+16
+        bne     .L10
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #67
@@ -311,8 +305,8 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #6
         str     r3, [fp, #-16]
-        b       .L17
-.L11:
+        b       .L16
+.L10:
         ldr     r3, [fp, #-16]
         add     r2, r3, #6
         sub     r3, fp, #4980736
@@ -321,8 +315,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        bne     .L12
-        ldr     r3, .L20+16
+        bne     .L11
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #75
@@ -330,8 +324,8 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #7
         str     r3, [fp, #-16]
-        b       .L17
-.L12:
+        b       .L16
+.L11:
         ldr     r3, [fp, #-16]
         add     r2, r3, #7
         sub     r3, fp, #4980736
@@ -340,8 +334,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        beq     .L13
-        ldr     r3, .L20+16
+        beq     .L12
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #86
@@ -349,8 +343,8 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #8
         str     r3, [fp, #-16]
-        b       .L17
-.L13:
+        b       .L16
+.L12:
         ldr     r3, [fp, #-16]
         add     r2, r3, #8
         sub     r3, fp, #4980736
@@ -359,8 +353,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        bne     .L14
-        ldr     r3, .L20+16
+        bne     .L13
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #88
@@ -368,8 +362,8 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #9
         str     r3, [fp, #-16]
-        b       .L17
-.L14:
+        b       .L16
+.L13:
         ldr     r3, [fp, #-16]
         add     r2, r3, #9
         sub     r3, fp, #4980736
@@ -378,8 +372,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        bne     .L15
-        ldr     r3, .L20+16
+        bne     .L14
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #81
@@ -387,8 +381,8 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #10
         str     r3, [fp, #-16]
-        b       .L17
-.L15:
+        b       .L16
+.L14:
         ldr     r3, [fp, #-16]
         add     r2, r3, #10
         sub     r3, fp, #4980736
@@ -397,8 +391,8 @@ main:
         add     r3, r3, r2
         ldrb    r3, [r3, #-2904]        @ zero_extendqisi2
         cmp     r3, #0
-        beq     .L16
-        ldr     r3, .L20+16
+        beq     .L15
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #74
@@ -406,9 +400,9 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #11
         str     r3, [fp, #-16]
-        b       .L17
-.L16:
-        ldr     r3, .L20+16
+        b       .L16
+.L15:
+        ldr     r3, .L19+16
         ldr     r3, [r3]
         mov     r1, r3
         mov     r0, #90
@@ -416,15 +410,15 @@ main:
         ldr     r3, [fp, #-16]
         add     r3, r3, #11
         str     r3, [fp, #-16]
-        b       .L17
+        b       .L16
 .L7:
         mov     r3, #0
-.L18:
+.L17:
         mov     r0, r3
         sub     sp, fp, #4
         ldmfd   sp!, {fp, lr}
         bx      lr
-.L20:
+.L19:
         .word   stdin
         .word   -5000024
         .word   4999998

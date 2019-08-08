@@ -99,7 +99,6 @@ int main() {
         unsigned char buffer;
 		//first bit
 		buffer = input[i];
-		if(buffer>1)return 1;
 		//shift for bits 2-6
 		buffer <<= 1;
 		buffer |= input[i+1];
