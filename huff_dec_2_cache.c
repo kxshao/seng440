@@ -9,7 +9,6 @@ int main() {
 //	FILE* f = fopen("../text/enc.txt","r");
 	FILE* f = stdin;
 	if(!f){
-		printf("file open failed\n");
 		return 1;
 	}
 	int c;
