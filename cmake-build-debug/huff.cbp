@@ -17,6 +17,56 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufe2">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufe2/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
 				<Option type="4"/>
@@ -67,11 +117,121 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
+			<Target title="hufd2">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd2" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
-				<Option type="4"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufd2/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufe0">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe0"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufe0/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe0/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufd0">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd0"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufd0/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd0/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -117,12 +277,110 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="hufe1">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufe1/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufe1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufe1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufd1">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hufd1/fast">
+				<Option output="/home/k/CLionProjects/seng440/cmake-build-debug/hufd1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/k/CLionProjects/seng440/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 hufd1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/k/CLionProjects/seng440/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="/home/k/CLionProjects/seng440/huff_dec.c">
 			<Option target="hufd"/>
 		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_dec_0_unoptimized.c">
+			<Option target="hufd0"/>
+		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_dec_1_pre_weights.c">
+			<Option target="hufd1"/>
+		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_dec_2_cache.c">
+			<Option target="hufd2"/>
+		</Unit>
 		<Unit filename="/home/k/CLionProjects/seng440/huff_enc.c">
 			<Option target="hufe"/>
+		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_enc_0_unoptimized.c">
+			<Option target="hufe0"/>
+		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_enc_1_pre_weights.c">
+			<Option target="hufe1"/>
+		</Unit>
+		<Unit filename="/home/k/CLionProjects/seng440/huff_enc_2_cache.c">
+			<Option target="hufe2"/>
 		</Unit>
 		<Unit filename="/home/k/CLionProjects/seng440/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
