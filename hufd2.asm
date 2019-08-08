@@ -1,130 +1,130 @@
 cache6:
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   84
-        .word   3
+        .byte   3
         .byte   68
-        .word   4
+        .byte   4
         .byte   68
-        .word   4
+        .byte   4
         .byte   68
-        .word   4
+        .byte   4
         .byte   68
-        .word   4
+        .byte   4
         .byte   70
-        .word   5
+        .byte   5
         .byte   70
-        .word   5
+        .byte   5
         .byte   77
-        .word   5
+        .byte   5
         .byte   77
-        .word   5
+        .byte   5
         .byte   87
-        .word   5
+        .byte   5
         .byte   87
-        .word   5
+        .byte   5
         .byte   66
-        .word   6
+        .byte   6
         .byte   80
-        .word   6
+        .byte   6
         .byte   82
-        .word   4
+        .byte   4
         .byte   82
-        .word   4
+        .byte   4
         .byte   82
-        .word   4
+        .byte   4
         .byte   82
-        .word   4
+        .byte   4
         .byte   73
-        .word   4
+        .byte   4
         .byte   73
-        .word   4
+        .byte   4
         .byte   73
-        .word   4
+        .byte   4
         .byte   73
-        .word   4
+        .byte   4
         .byte   83
-        .word   4
+        .byte   4
         .byte   83
-        .word   4
+        .byte   4
         .byte   83
-        .word   4
+        .byte   4
         .byte   83
-        .word   4
+        .byte   4
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   69
-        .word   3
+        .byte   3
         .byte   72
-        .word   4
+        .byte   4
         .byte   72
-        .word   4
+        .byte   4
         .byte   72
-        .word   4
+        .byte   4
         .byte   72
-        .word   4
+        .byte   4
         .byte   85
-        .word   5
+        .byte   5
         .byte   85
-        .word   5
+        .byte   5
         .byte   71
-        .word   6
+        .byte   6
         .byte   89
-        .word   6
+        .byte   6
         .byte   78
-        .word   4
+        .byte   4
         .byte   78
-        .word   4
+        .byte   4
         .byte   78
-        .word   4
+        .byte   4
         .byte   78
-        .word   4
+        .byte   4
         .byte   79
-        .word   4
+        .byte   4
         .byte   79
-        .word   4
+        .byte   4
         .byte   79
-        .word   4
+        .byte   4
         .byte   79
-        .word   4
+        .byte   4
         .byte   65
-        .word   4
+        .byte   4
         .byte   65
-        .word   4
+        .byte   4
         .byte   65
-        .word   4
+        .byte   4
         .byte   65
-        .word   4
+        .byte   4
         .byte   76
-        .word   5
+        .byte   5
         .byte   76
-        .word   5
+        .byte   5
         .byte   0
-        .word   5
+        .byte   5
 main:
         stmfd   sp!, {fp, lr}
         add     fp, sp, #4
@@ -255,12 +255,12 @@ main:
         strb    r3, [fp, #-25]
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
         ldr     r2, .L18+12
-        ldrb    r3, [r2, r3, asl #3]    @ zero_extendqisi2
+        ldrb    r3, [r2, r3, asl #1]    @ zero_extendqisi2
         cmp     r3, #0
         beq     .L8
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
         ldr     r2, .L18+12
-        ldrb    r3, [r2, r3, asl #3]    @ zero_extendqisi2
+        ldrb    r3, [r2, r3, asl #1]    @ zero_extendqisi2
         mov     r2, r3
         ldr     r3, .L18+16
         ldr     r3, [r3]
@@ -269,11 +269,12 @@ main:
         bl      _IO_putc
         ldrb    r3, [fp, #-25]  @ zero_extendqisi2
         ldr     r2, .L18+12
-        mov     r3, r3, asl #3
+        mov     r3, r3, asl #1
         add     r3, r2, r3
-        ldr     r3, [r3, #4]
-        ldr     r2, [fp, #-16]
-        add     r3, r2, r3
+        ldrb    r3, [r3, #1]    @ zero_extendqisi2
+        mov     r2, r3
+        ldr     r3, [fp, #-16]
+        add     r3, r3, r2
         str     r3, [fp, #-16]
         b       .L7
 .L8:

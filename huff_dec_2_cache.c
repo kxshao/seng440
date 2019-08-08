@@ -5,7 +5,7 @@
 
 struct CacheObj{
     char c;
-    int actualBits;
+    unsigned char actualBits;
 };
 //this can be addressed as a 6 bit number (char or int)
 const struct CacheObj cache6[] ={
